@@ -6,10 +6,19 @@ Central registry of every agent's model, description, and instruction.
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from typing import Any
 
 from .model_config import MODEL_FAST, MODEL_MID, MODEL_MAIN
+from ..schemas.models import (
+    AMLScreeningResult,
+    CustomerIntake,
+    DocumentCheckResult,
+    IdentityVerification,
+    OnboardingDecision,
+    RiskAssessment,
+)
 
 _MODELS = {
     "IntakeAgent":            MODEL_FAST,
@@ -19,6 +28,17 @@ _MODELS = {
     "AuditAgent":             MODEL_MID,
     "RiskAgent":              MODEL_MAIN,
     "OnboardingAssistant":    MODEL_MAIN,
+}
+
+# JSON schemas injected into agent instructions at import time so the LLM
+# always sees the authoritative field list — never a manual prose copy.
+_schema = {
+    "CustomerIntake":      json.dumps(CustomerIntake.model_json_schema(), indent=2),
+    "DocumentCheckResult": json.dumps(DocumentCheckResult.model_json_schema(), indent=2),
+    "IdentityVerification": json.dumps(IdentityVerification.model_json_schema(), indent=2),
+    "AMLScreeningResult":  json.dumps(AMLScreeningResult.model_json_schema(), indent=2),
+    "RiskAssessment":      json.dumps(RiskAssessment.model_json_schema(), indent=2),
+    "OnboardingDecision":  json.dumps(OnboardingDecision.model_json_schema(), indent=2),
 }
 
 
@@ -53,9 +73,11 @@ Rules:
 - For annual_income: if not stated, set to 0.0.
 - documents_provided: list only documents explicitly mentioned as submitted.
 
-Respond ONLY with a valid JSON object matching the CustomerIntake schema.
-Do not include any explanation or markdown fences — raw JSON only.
-""",
+Respond ONLY with a valid JSON object conforming to this exact schema:
+"""
+        + _schema["CustomerIntake"]
+        + "\nRaw JSON only — no explanation, no markdown fences.\n",
+
     ),
 
     "DocumentAgent": AgentConfig(
@@ -74,8 +96,10 @@ Your tasks:
    - all_docs_present: true only if no missing docs
    - followup_request: if missing docs, a polite professional message listing what is needed
 4. Call write_audit_log with agent_name "DocumentAgent".
-5. Respond ONLY with a valid JSON object matching the DocumentCheckResult schema. Raw JSON only.
-""",
+5. Respond ONLY with a valid JSON object conforming to this exact schema:
+"""
+        + _schema["DocumentCheckResult"]
+        + "\nRaw JSON only.\n",
     ),
 
     "IdentityAgent": AgentConfig(
@@ -98,8 +122,10 @@ Your tasks:
    - ID document type inappropriate for stated country
 4. Generate follow-up questions for each mismatch requiring clarification.
 5. Call write_audit_log with agent_name "IdentityAgent".
-6. Respond ONLY with a valid JSON object matching the IdentityVerification schema. Raw JSON only.
-""",
+6. Respond ONLY with a valid JSON object conforming to this exact schema:
+"""
+        + _schema["IdentityVerification"]
+        + "\nRaw JSON only.\n",
     ),
 
     "AMLAgent": AgentConfig(
@@ -125,8 +151,10 @@ Your tasks:
    - Cap total at 1.0
 6. List all risk_factors and screening_flags.
 7. Call write_audit_log with agent_name "AMLAgent".
-8. Respond ONLY with a valid JSON object matching the AMLScreeningResult schema. Raw JSON only.
-""",
+8. Respond ONLY with a valid JSON object conforming to this exact schema:
+"""
+        + _schema["AMLScreeningResult"]
+        + "\nRaw JSON only.\n",
     ),
 
     "RiskAgent": AgentConfig(
@@ -162,8 +190,10 @@ Your tasks:
 5. Write compliance_notes: a 1–2 sentence professional summary for the compliance officer.
 6. List all risk_factors that contributed to the score.
 7. Call write_audit_log with agent_name "RiskAgent".
-8. Respond ONLY with a valid JSON object matching the RiskAssessment schema. Raw JSON only.
-""",
+8. Respond ONLY with a valid JSON object conforming to this exact schema:
+"""
+        + _schema["RiskAssessment"]
+        + "\nRaw JSON only.\n",
     ),
 
     "AuditAgent": AgentConfig(
@@ -193,8 +223,10 @@ Your tasks:
 
 5. Call write_audit_log with agent_name "AuditAgent" and the final decision details.
 
-6. Respond ONLY with a valid JSON object matching the OnboardingDecision schema. Raw JSON only.
-""",
+6. Respond ONLY with a valid JSON object conforming to this exact schema:
+"""
+        + _schema["OnboardingDecision"]
+        + "\nRaw JSON only.\n",
     ),
 
     "OnboardingAssistant": AgentConfig(
