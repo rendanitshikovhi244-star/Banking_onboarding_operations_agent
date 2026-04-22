@@ -31,7 +31,7 @@ if hasattr(sys.stderr, "reconfigure"):
 
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent / "banking_agent" / ".env")
+load_dotenv(Path(__file__).parent / ".env")
 
 from banking_agent.configs.logging_config import configure as _configure_logging
 _configure_logging()

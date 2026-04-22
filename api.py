@@ -29,7 +29,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-load_dotenv(Path(__file__).parent / "banking_agent" / ".env")
+load_dotenv(Path(__file__).parent / ".env")
 
 from banking_agent.configs.logging_config import configure as _configure_logging
 

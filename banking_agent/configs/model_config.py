@@ -16,7 +16,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from google.adk.models.lite_llm import LiteLlm
 
-load_dotenv(Path(__file__).parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent.parent / ".env")
 
 MODEL_FAST = LiteLlm(model=os.environ["HF_MODEL_FAST"])
 MODEL_MID  = LiteLlm(model=os.environ["HF_MODEL_MID"])

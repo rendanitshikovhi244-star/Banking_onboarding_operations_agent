@@ -9,7 +9,7 @@ venv/
 env/
 
 # Environment files — never commit real secrets
-banking_agent/.env
+.env
 
 # Logs
 logs/*.log

@@ -19,7 +19,7 @@ from pathlib import Path
 import redis.asyncio as aioredis
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent.parent / ".env")
 
 _REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 logger = logging.getLogger("banking_agent.pipeline")
