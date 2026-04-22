@@ -1,0 +1,21 @@
+{
+  "application_id": "APP-20260422-002",
+  "full_name": "TechCorp Solutions LLC",
+  "date_of_birth": "2015-06-01",
+  "nationality": "US",
+  "country_of_residence": "US",
+  "id_type": "national_id",
+  "id_number": "EIN-83-1234567",
+  "id_expiry_date": "2099-01-01",
+  "address": "456 Innovation Drive, Suite 200, San Francisco, CA 94105, USA",
+  "phone_number": "+1-415-555-0200",
+  "email": "compliance@techcorpsolutions.com",
+  "account_type": "business_current",
+  "source_of_funds": "business_revenue",
+  "employment_status": "business_owner",
+  "annual_income": 850000.0,
+  "documents_provided": [
+    "company_registration",
+    "certificate_of_incorporation"
+  ]
+}

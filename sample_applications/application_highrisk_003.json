@@ -1,0 +1,20 @@
+{
+  "application_id": "APP-20260422-003",
+  "full_name": "Viktor Petrov",
+  "date_of_birth": "1975-11-22",
+  "nationality": "RU",
+  "country_of_residence": "AE",
+  "id_type": "passport",
+  "id_number": "RU9876543",
+  "id_expiry_date": "2025-11-22",
+  "address": "789 Palm Jumeirah, Villa 12, Dubai, AE",
+  "phone_number": "+971-4-555-0300",
+  "email": "viktor.p@protonmail.com",
+  "account_type": "investment",
+  "source_of_funds": "investment_returns",
+  "employment_status": "self_employed",
+  "annual_income": 2000000.0,
+  "documents_provided": [
+    "government_id"
+  ]
+}

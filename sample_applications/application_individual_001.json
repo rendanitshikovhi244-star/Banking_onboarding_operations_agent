@@ -1,0 +1,22 @@
+{
+  "application_id": "APP-20260422-001",
+  "full_name": "Sarah Johnson",
+  "date_of_birth": "1988-03-15",
+  "nationality": "US",
+  "country_of_residence": "US",
+  "id_type": "passport",
+  "id_number": "P12345678",
+  "id_expiry_date": "2030-03-15",
+  "address": "123 Oak Street, Apartment 4B, New York, NY 10001, USA",
+  "phone_number": "+1-212-555-0100",
+  "email": "sarah.johnson@email.com",
+  "account_type": "personal_checking",
+  "source_of_funds": "employment",
+  "employment_status": "employed",
+  "annual_income": 75000.0,
+  "documents_provided": [
+    "government_id",
+    "proof_of_address",
+    "proof_of_income"
+  ]
+}
